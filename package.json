@@ -1,0 +1,29 @@
+{
+  "name": "await",
+  "version": "1.0.0",
+  "description": "Demonstration of async/await in Javascript for CoderCamp",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rprouse/javascript-async.git"
+  },
+  "scripts": {
+    "test": "mocha **/*.spec.js",
+    "debug": "node --nolazy --debug-brk=5858 app.js"
+  },
+  "author": "Rob Prouse <rob@prouse.org>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^4.0.1",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^8.0.26",
+    "@types/request": "^2.0.3",
+    "@types/request-promise": "^4.1.37",
+    "mocha": "^3.4.2"
+  }
+}
