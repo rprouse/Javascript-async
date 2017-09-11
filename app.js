@@ -21,17 +21,17 @@ const options = {
   }
 };
 
-function getRepositories() {
-  return request('https://api.github.com/orgs/nunit/repos', options).then(function(data){
+function getIssues() {
+  return request('https://api.github.com/issues', options).then(function(data){
     return JSON.parse(data);
   }).catch(function(err) {
     return [];
   })
 }
 
-getRepositories().then(function(repos){
-  for (let repo of repos) {
-    console.log(repo.name);
+getIssues().then(function(issues){
+  for (let issue of issues) {
+    console.log( issue.repository.full_name + '#' + issue.number + " - " + issue.title);
   }
 });
 
