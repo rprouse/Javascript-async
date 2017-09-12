@@ -1,6 +1,6 @@
 "use strict";
 
-const request = require("request-promise");
+const request = require("request-promise-native");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -26,7 +26,7 @@ function getIssues() {
     return JSON.parse(data);
   }).catch(function(err) {
     return [];
-  })
+  });
 }
 
 getIssues().then(function(issues){

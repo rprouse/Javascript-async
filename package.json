@@ -16,14 +16,14 @@
   "dependencies": {
     "dotenv": "^4.0.0",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "request-promise-native": "^1.0.4"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.1",
     "@types/mocha": "^2.2.41",
     "@types/node": "^8.0.26",
     "@types/request": "^2.0.3",
-    "@types/request-promise": "^4.1.37",
+    "@types/request-promise-native": "^1.0.6",
     "mocha": "^3.4.2"
   }
 }
