@@ -21,12 +21,16 @@ const options = {
   }
 };
 
+function getIssues() {
+  return request('https://api.github.com/issues', options);
+}
+
 function getComments(issue) {
     return request(issue.comments_url, options);
 }
 
-function getIssues() {
-  request('https://api.github.com/issues', options).then(function(data){
+function displayIssuesWithComments() {
+  getIssues().then(function(data){
     let issues = JSON.parse(data);
     for (let issue of issues) {
         getComments(issue).then(function(data) {
@@ -41,5 +45,5 @@ function getIssues() {
   });
 }
 
-getIssues();
+displayIssuesWithComments();
 
