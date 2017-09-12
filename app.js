@@ -21,14 +21,23 @@ const options = {
   }
 };
 
+function getComments(issue) {
+    return request(issue.comments_url, options);
+}
+
 function getIssues() {
   request('https://api.github.com/issues', options).then(function(data){
     let issues = JSON.parse(data);
     for (let issue of issues) {
-      console.log( issue.repository.full_name + '#' + issue.number + " - " + issue.title);
+        getComments(issue).then(function(data) {
+          let comments = JSON.parse(data);
+          console.log(issue.repository.full_name + '#' + issue.number + ' - ' + issue.title + ' (' + comments.length + ' comments)');
+      }).catch(function(error) {
+          console.error(error);
+      });
     }
   }).catch(function(error) {
-    console.log(error);
+    console.error(error);
   });
 }
 
