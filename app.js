@@ -22,16 +22,15 @@ const options = {
 };
 
 function getIssues() {
-  return request('https://api.github.com/issues', options).then(function(data){
-    return JSON.parse(data);
-  }).catch(function(err) {
-    return [];
+  request('https://api.github.com/issues', options).then(function(data){
+    let issues = JSON.parse(data);
+    for (let issue of issues) {
+      console.log( issue.repository.full_name + '#' + issue.number + " - " + issue.title);
+    }
+  }).catch(function(error) {
+    console.log(error);
   });
 }
 
-getIssues().then(function(issues){
-  for (let issue of issues) {
-    console.log( issue.repository.full_name + '#' + issue.number + " - " + issue.title);
-  }
-});
+getIssues();
 
