@@ -21,15 +21,13 @@ const options = {
   }
 };
 
-async function getIssues() {
-  return await request('https://api.github.com/issues', options);
-}
+let getIssues = async () =>
+  await request('https://api.github.com/issues', options);
 
-async function getComments(issue) {
-    return await request(issue.comments_url, options);
-}
+let getComments = async (issue) =>
+    await request(issue.comments_url, options);
 
-async function displayIssuesWithComments() {
+let displayIssuesWithComments = async () => {
   try {
     let data = await getIssues();
     let issues = JSON.parse(data);
@@ -41,7 +39,7 @@ async function displayIssuesWithComments() {
   } catch(error) {
     console.error(error);
   }
-}
+};
 
 displayIssuesWithComments();
 
