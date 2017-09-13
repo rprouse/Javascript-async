@@ -21,28 +21,26 @@ const options = {
   }
 };
 
-function getIssues() {
-  return request('https://api.github.com/issues', options);
+async function getIssues() {
+  return await request('https://api.github.com/issues', options);
 }
 
-function getComments(issue) {
-    return request(issue.comments_url, options);
+async function getComments(issue) {
+    return await request(issue.comments_url, options);
 }
 
-function displayIssuesWithComments() {
-  getIssues().then(function(data){
+async function displayIssuesWithComments() {
+  try {
+    let data = await getIssues();
     let issues = JSON.parse(data);
     for (let issue of issues) {
-        getComments(issue).then(function(data) {
-          let comments = JSON.parse(data);
-          console.log(issue.repository.full_name + '#' + issue.number + ' - ' + issue.title + ' (' + comments.length + ' comments)');
-      }).catch(function(error) {
-          console.error(error);
-      });
+      let commentData = await getComments(issue);
+      let comments = JSON.parse(data);
+      console.log(issue.repository.full_name + '#' + issue.number + ' - ' + issue.title + ' (' + comments.length + ' comments)');
     }
-  }).catch(function(error) {
+  } catch(error) {
     console.error(error);
-  });
+  }
 }
 
 displayIssuesWithComments();
